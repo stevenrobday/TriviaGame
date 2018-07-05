@@ -1,0 +1,9 @@
+#videoContainer{
+    width: 1000px;
+    height: 500px;
+}
+
+video{
+    height: 100%;
+    width: auto;
+}
