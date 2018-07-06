@@ -1,4 +1,22 @@
+/*from fontsmarket.com*/
+@font-face {
+    font-family: 'arialboldmt';
+    src: url('../fonts/arialboldmt.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/*from fontsgeek.com*/
+@font-face {
+    font-family: 'bundyregular';
+    src: url('../fonts/bundyregular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body{
+    font-family: 'arialboldmt';
+    font-size: 30px;
     width: 100vw;
     height: 100vh;
     background-color: #673213;
@@ -9,19 +27,21 @@ body{
     left: 0; right: 0; top: 0; bottom: 0;
     position: absolute;
     margin: auto;
-    width: 90vw;
+    width: 100vw;
     height: 80vh;
-    border: 2vw solid #ac4b30;
+    border-top: 4vh solid #ac4b30;
+    border-bottom: 4vh solid #ac4b30;
     display: flex;
 }
 
 .content{
     box-sizing: border-box;
     margin: auto;
-    width: 90vw;
+    width: 100vw;
     height: 80vh;
-    background-color: #e3e3e5;
-    border: 2vw solid #eaa902;
+    background-color: #f6d4af;
+    border-top: 4vh solid #eaa902;
+    border-bottom: 4vh solid #eaa902;
 }
 
 

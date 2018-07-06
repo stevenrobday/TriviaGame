@@ -134,24 +134,24 @@ var gameObj = {
                 "You can inflate it, then shuffle left and right!"
             ],
             correctIndex: 3,
-            correctAnswer: "Be sure to call Mike back, or he'll shoot your right hand!" 
+            correctAnswer: "Inflate your hazmat suit and shuffle around a little. That's right. Now you're going places!" 
         }
     ],
     results: [
         {
-            resultText: "<p>YOU ARE A HIGH SCHOOL CHEMISTRY TEACHER.</p><p>You stop after your first few cooks because you find the pacing slow, and you thought the crafting elements were too complicated.  You are afraid of the things Tuco could do to you (and he's the easiest boss!  You just go hide...), and you're in enough trouble with Skyler already.  So you swear off a life of crime and go back to teaching chemistry for another two years before dying of lung cancer, beloved and cared for, but ultimately, bored.</p><p>GAME OVER</p><p>Try to challenge yourself a little more; you may end up enjoying yourself!</p>"
+            resultText: "<p>YOU ARE A HIGH SCHOOL CHEMISTRY TEACHER.</p><p>You stop after your first few cooks because you find the pacing slow, and you thought the crafting elements were too complicated. You are afraid of the things Tuco could do to you (and he's the easiest boss! You just go hide...), and you're in enough trouble with Skyler already. So you swear off a life of crime and go back to teaching chemistry for another two years before dying of lung cancer, beloved and cared for, but ultimately, bored.</p><p>GAME OVER</p><p>Try to challenge yourself a little more; you may end up enjoying yourself!</p>"
         },
         {
-            resultText: "<p>YOU ARE A PLUCKY STARTUP!</p><p>You levelled up your infamy by beating Tuco, and are making a decent living cooking meth in the RV.  And they finally locked up Jesse's idiot friend, Badger!  Incidentally, Hank just found out what you're up to, and him and Steve Gomez are on their way to put you behind bars for life.</p><p>GAME OVER</p><p>You need to go talk to the NPC Saul, who saves you when Badger gets busted (an event that gets triggered one game-day cycle after the player takes control of Jesse and crushes Spooge's head with the ATM machine).</p>"
+            resultText: "<p>YOU ARE A PLUCKY STARTUP!</p><p>You levelled up your infamy by beating Tuco, and are making a decent living cooking meth in the RV. And they finally locked up Jesse's idiot friend, Badger! Incidentally, Hank just found out what you're up to, and him and Steve Gomez are on their way to put you behind bars for life.</p><p>GAME OVER</p><p>You need to go talk to the NPC Saul, who saves you when Badger gets busted (an event that gets triggered one game-day cycle after the player takes control of Jesse and crushes Spooge's head with the ATM machine).</p>"
         },
         {
-            resultText: "<p>YOU ARE A MID-GRADE COOK!</p><p>Mike gives you one last phone call.  It's a tough choice between your wife and your best friend, but you side with the latter.  The game switches to Jesse, and a boss appears!  He's unarmed, and you have a gun.  But you fail the quick-time event and are defeated.  Then when the game switches back to Walter, Mike takes you down to the basement and executes you.</p><p>GAME OVER</p><p>When you're about to land the finishing blow on Gale, the camera spins around to face you.  Do not move the analog stick at all to try to correct this, you'll end up moving your arm, missing Gale's head entirely and alerting the neighbors!</p>"
+            resultText: "<p>YOU ARE A MID-GRADE COOK!</p><p>Mike gives you one last phone call. It's a tough choice between your wife and your best friend, but you side with the latter. The game switches to Jesse, and a boss appears! He's unarmed, and you have a gun. But you fail the quick-time event and are defeated. Then when the game switches back to Walter, Mike takes you down to the basement and executes you.</p><p>GAME OVER</p><p>When you're about to land the finishing blow on Gale, the camera spins around to face you. Do not move the analog stick at all to try to correct this, you'll end up moving your arm, missing Gale's head entirely and alerting the neighbors!</p>"
         },
         {
-            resultText: "<p>YOU ARE A MASTER CHEF!</p><p>Things are looking grim.  Your best friend hates you, and your boss wants you dead.  Your wife gave your money to Beneke, which means you can't skip town and try your luck there.  So you play a round of spin-the-gun-on-the-table, and win!  Later, you pass by Jesse's girlfriend's kid.  You don't even know his name, so you continue walking, and hope you didn't upset Jesse doing so.  A few days later, Gustavo has you executed.</p><p>GAME OVER</p><p>After beating the gun-spinning mini-game, the gun points to a plantar box.  You need this in your inventory to defeat the mini-boss.  This is easy to miss if you're not playing on easy mode (where the plant highlights), so be sure to pick it up!</p>"
+            resultText: "<p>YOU ARE A MASTER CHEF!</p><p>Things are looking grim. Your best friend hates you, and your boss wants you dead. Your wife gave your money to Beneke, which means you can't skip town and try your luck there. So you play a round of spin-the-gun-on-the-table, and win! Later, you pass by Jesse's girlfriend's kid. You don't even know his name, so you continue walking, and hope you didn't upset Jesse doing so. A few days later, Gustavo has you executed.</p><p>GAME OVER</p><p>After beating the gun-spinning mini-game, the gun points to a plantar box.  You need this in your inventory to defeat the mini-boss. This is easy to miss if you're not playing on easy mode (where the plant highlights), so be sure to pick it up!</p>"
         },
         {
-            resultText: "<p>YOU ARE THE HEISENBERG!</p><p>You have defeated Tuco, Gale, and Gustavo, and are now The Notorious Drug Lord! Ironically, all it cost you was the very thing you claimed to have become Drug Lord for in the first place!  Well, you died too, and Nazis tortured your best friend.  The audience doesn't like you anymore, either.  No, you crossed that bridge when you made the nice man in the wheelchair explode. </p><p>GAME OVER</p><p>You won the game, but lost in everything that actually matters.  Like audience trust.  Maybe you should have stayed a chemistry teacher...</p>"
+            resultText: "<p>YOU ARE THE HEISENBERG!</p><p>You have defeated Tuco, Gale, and Gustavo, and are now The Notorious Drug Lord! Ironically, all it cost you was the very thing you claimed to have become Drug Lord for in the first place! Well, you died too, and Nazis tortured your best friend. The audience doesn't like you anymore, either. No, you crossed that bridge when you made the nice man in the wheelchair explode.</p><p>GAME OVER</p><p>You won the game, but lost in everything that actually matters. Like audience trust. Maybe you should have stayed a chemistry teacher...</p>"
         }
     ]
 };
@@ -162,3 +162,6 @@ var numResults = gameObj.results.length;
 
 var questionsArray;
 
+questionsArray = gameObj.questions;
+
+$("#question").append(questionsArray[8].question);
