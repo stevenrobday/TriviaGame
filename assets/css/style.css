@@ -19,7 +19,7 @@ body{
     font-size: 30px;
     width: 100vw;
     height: 100vh;
-    background-color: #673213;
+    background-color: #4d0001;
     position: relative;
 }
 
@@ -28,20 +28,22 @@ body{
     position: absolute;
     margin: auto;
     width: 100vw;
-    height: 80vh;
-    border-top: 4vh solid #ac4b30;
-    border-bottom: 4vh solid #ac4b30;
-    display: flex;
+    height: 86vh;
+    background-color: #efd004;
+    border-top: 2vh solid #e05618;
+    border-bottom: 2vh solid #e05618 ;
 }
 
 .content{
-    box-sizing: border-box;
+    left: 0; right: 0; top: 0; bottom: 0;
+    position: absolute;
     margin: auto;
+    box-sizing: border-box;
     width: 100vw;
-    height: 80vh;
+    height: 82vh;
     background-color: #f5dfc6;
-    border-top: 4vh solid #eaa902;
-    border-bottom: 4vh solid #eaa902;
+    border-top: 3.5vh solid #745527;
+    border-bottom: 3.5vh solid #745527;
 }
 
 
