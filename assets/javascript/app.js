@@ -25,7 +25,6 @@ $("video").on("pause", function () {
   */
 
 var gameObj = {
-    numQuestions: 10,
     questions: [
         {
             question: "Your wife lowers her side of the bed.",
@@ -138,7 +137,6 @@ var gameObj = {
             correctAnswer: "Be sure to call Mike back, or he'll shoot your right hand!" 
         }
     ],
-    numResults: 5,
     results: [
         {
             resultText: "<p>YOU ARE A HIGH SCHOOL CHEMISTRY TEACHER.</p><p>You stop after your first few cooks because you find the pacing slow, and you thought the crafting elements were too complicated.  You are afraid of the things Tuco could do to you (and he's the easiest boss!  You just go hide...), and you're in enough trouble with Skyler already.  So you swear off a life of crime and go back to teaching chemistry for another two years before dying of lung cancer, beloved and cared for, but ultimately, bored.</p><p>GAME OVER</p><p>Try to challenge yourself a little more; you may end up enjoying yourself!</p>"
@@ -157,3 +155,10 @@ var gameObj = {
         }
     ]
 };
+
+//may be able to make local
+var numQuestions = gameObj.questions.length;
+var numResults = gameObj.results.length;
+
+var questionsArray;
+

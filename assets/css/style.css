@@ -1,7 +1,29 @@
-#videoContainer{
-    width: 1000px;
-    height: 500px;
+body{
+    width: 100vw;
+    height: 100vh;
+    background-color: #673213;
+    position: relative;
 }
+
+.contentWrap{
+    left: 0; right: 0; top: 0; bottom: 0;
+    position: absolute;
+    margin: auto;
+    width: 90vw;
+    height: 80vh;
+    border: 2vw solid #ac4b30;
+    display: flex;
+}
+
+.content{
+    box-sizing: border-box;
+    margin: auto;
+    width: 90vw;
+    height: 80vh;
+    background-color: #e3e3e5;
+    border: 2vw solid #eaa902;
+}
+
 
 video{
     height: 100%;
