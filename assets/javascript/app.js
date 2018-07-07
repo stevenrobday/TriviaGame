@@ -20,8 +20,8 @@ $("video").on("pause", function () {
   $("video").on("ended", function () {
     console.log("see ya");
   });
-
-  //play the video before the timer expires!
+  //Give up?
+  //play the video before you're out of time!
   */
 
 var gameObj = {
@@ -46,7 +46,7 @@ var gameObj = {
                 "No, The Heisenberg poisoned her with ricin."
             ],
             correctIndex: 3,
-            correctAnswer: "The Heisenberg poisoned the nice lady with ricin, so she will not be ok..."
+            correctAnswer: "The Heisenberg poisoned the nice lady with ricin, so she will not be ok."
         },
         {
             question: "Look at me, Hector.",
@@ -60,7 +60,7 @@ var gameObj = {
             correctAnswer: "You don't want to look at him. Just grimmace and drool instead."
         },
         {
-            question: "The following is, like, totally in the constitution, man.",
+            question: "The following is totally in the Constitution:",
             answers: [
                 "We hold these truths to be, like, duh!",
                 "Four score and, um, what would an additional seven years be?",
@@ -123,9 +123,9 @@ var gameObj = {
                 "All of the above."
             ],
             correctIndex: 0,
-            correctAnswer: "Be sure to call Mike back, or he'll shoot your right hand!",
-            imgTag: "<img src='assets/images/callMike.jpg' width='480'>"
-
+            correctAnswer: "Mike will shoot your right hand if you don't call him back, so be sure not to make this mistake!",
+            imgTag: "<img src='assets/images/callMike.jpg' width='480'>",
+            videoTag: "<source src='assets/videos/callMike.mp4' type='video/mp4'>"
         },
         {
             question: "The following is a benefit of wearing a hazmat suit:",
@@ -147,7 +147,7 @@ var gameObj = {
             resultText: "<p>YOU ARE A PLUCKY STARTUP!</p><p>You levelled up your infamy by beating Tuco, and are making a decent living cooking meth in the RV. And they finally locked up Jesse's idiot friend, Badger! Incidentally, Hank just found out what you're up to, and him and Steve Gomez are on their way to put you behind bars for life.</p><p>GAME OVER</p><p>You need to go talk to the NPC Saul, who saves you when Badger gets busted (an event that gets triggered one game-day cycle after the player takes control of Jesse and crushes Spooge's head with the ATM machine).</p>"
         },
         {
-            resultText: "<p>YOU ARE A MID-GRADE COOK!</p><p>Mike gives you one last phone call. It's a tough choice between your wife and your best friend, but you side with the latter. The game switches to Jesse, and a boss appears! He's unarmed, and you have a gun. But you fail the quick-time event and are defeated. Then when the game switches back to Walter, Mike takes you down to the basement and executes you.</p><p>GAME OVER</p><p>When you're about to land the finishing blow on Gale, the camera spins around to face you. Do not move the analog stick at all to try to correct this, you'll end up moving your arm, missing Gale's head entirely and alerting the neighbors!</p>"
+            resultText: "<p>YOU ARE A MID-GRADE COOK!</p><p>Mike gives you one last phone call. It's a tough choice between your wife and your best friend, but you side with the latter. The game switches to Jesse, and a boss appears! He's unarmed, and you have a gun. But you fail the quick-time event and are defeated. Then when the game switches back to Walter, Mike takes you down to the basement and executes you.</p><p>GAME OVER</p><p>When you're about to land the finishing blow on Gale, the camera spins around to face you. Do not adjust the analog stick to try to correct this, you'll end up moving your arm, missing Gale's head entirely and alerting the neighbors!</p>"
         },
         {
             resultText: "<p>YOU ARE A MASTER CHEF!</p><p>Things are looking grim. Your best friend hates you, and your boss wants you dead. Your wife gave your money to Beneke, which means you can't skip town and try your luck there. So you play a round of spin-the-gun-on-the-table, and win! Later, you pass by Jesse's girlfriend's kid. You don't even know his name, so you continue walking, and hope you didn't upset Jesse doing so. A few days later, Gustavo has you executed.</p><p>GAME OVER</p><p>After beating the gun-spinning mini-game, the gun points to a plantar box.  You need this in your inventory to defeat the mini-boss. This is easy to miss if you're not playing on easy mode (where the plant highlights), so be sure to pick it up!</p>"
@@ -166,12 +166,20 @@ var questionsArray;
 
 questionsArray = gameObj.questions;
 
+var $questionContainer = $("#questionContainer");
 var $question = $("#question");
 var $questionImg = $("#questionImg");
 var $questionOne = $("#questionOne");
 var $questionTwo = $("#questionTwo");
 var $questionThree = $("#questionThree");
 var $questionFour = $("#questionFour");
+var $questionCountdown = $("#questionCountdown");
+
+var $playerGuess = $("#playerGuess");
+var $answerContainer = $("#answerContainer");
+var $correctAnswer = $("#correctAnswer");
+var $answerVideo = $("#answerVideo");
+
 
 $question.html(questionsArray[8].question);
 $questionImg.html(questionsArray[8].imgTag);
@@ -179,3 +187,81 @@ $questionOne.html(questionsArray[8].answers[0]);
 $questionTwo.html(questionsArray[8].answers[1]);
 $questionThree.html(questionsArray[8].answers[2]);
 $questionFour.html(questionsArray[8].answers[3]);
+
+$(".gameBtns").on("click", function() {
+    assessAnswer(parseInt($(this).attr("data-index")));
+});
+
+function assessAnswer(answer) {
+    if (answer === questionsArray[8].correctIndex) {
+        $playerGuess.html("CORRECT!");
+    }
+    else {
+        $playerGuess.html("INCORRECT!");
+    }
+
+    appendAnswerAndFade();
+}
+
+function gaveUp(){
+    $playerGuess.html("GIVE UP?");
+
+    appendAnswerAndFade();
+}
+
+function appendAnswerAndFade() {
+    $correctAnswer.html(questionsArray[8].correctAnswer);
+    $answerVideo.html(questionsArray[8].videoTag);
+    $questionContainer.fadeOut(1000);
+    $answerContainer.fadeIn(1000, function() {
+        videoPlay($answerVideo);
+    });
+}
+
+function videoPlay($video) {
+    $video.trigger("play");
+}
+
+$answerVideo.on("pause", function () {
+    //if(!$("#intro").get(0).ended)
+        console.log($(this));
+  });
+
+var countdown = function(startVal, $element, cb){
+    this.startVal = startVal;
+    this.$element = $element;
+    this.cb = cb;
+};
+
+countdown.prototype = {
+    reset: function() {
+        this.time = this.startVal;
+    },
+    start: function() {
+        var that = this;
+
+        this.reset();
+        this.$element.html(this.time);
+        this.id = setInterval(function(){
+            that.count(that);
+        }, 1000);
+    },
+    stop: function() {
+        clearInterval(this.id);
+    },
+    count: function(that) {
+        that.time--;
+        that.$element.html(that.time);
+        
+        if(that.time === 0){
+            that.cb();
+        }
+    }
+};
+
+var questionTimer = new countdown(10, $questionCountdown, gaveUp);
+questionTimer.start();
+/*
+$answerVideo.on("ended", function () {
+    console.log("see ya");
+});*/

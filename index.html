@@ -10,20 +10,31 @@
 </head>
 
 <body>
-    <div style="display: none" class="videoContainer">
-        <video id="intro" width="480" height="260" controls>
+    <div id="introVidContainer">
+        <video width="768" height="432" controls>
             <source src="assets/videos/intro.mp4" type="video/mp4">
         </video>
     </div>
-    <div class="contentWrap" id="questionsContainer">
+    <div class="contentWrap" id="questionContainer">
         <div class="content">
             <div id="question"></div>
             <div id="questionImg"></div>
             <div id="answers">
-                <button id="questionOne" data-num="0"></button>
-                <button id="questionTwo" data-num="1"></button>
-                <button id="questionThree" data-num="2"></button>
-                <button id="questionFour" data-num="3"></button>
+                <button class="gameBtns" id="questionOne" data-index="0"></button>
+                <button class="gameBtns" id="questionTwo" data-index="1"></button>
+                <button class="gameBtns" id="questionThree" data-index="2"></button>
+                <button class="gameBtns" id="questionFour" data-index="3"></button>
+            </div>
+            <div id="questionCountdown"></div>
+        </div>
+    </div>
+    <div class="contentWrap" id="answerContainer">
+        <div class="content">
+            <div id="playerGuess"></div>
+            <div id="correctAnswer"></div>
+            <div id="answerVidContainer">
+                <video id="answerVideo" width="768" height="432" controls>
+                </video>
             </div>
         </div>
     </div>

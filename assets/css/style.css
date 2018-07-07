@@ -21,6 +21,11 @@ body{
     height: 100vh;
     background-color: #4d0001;
     position: relative;
+    font-weight: normal;
+}
+
+#introVidContainer, #answerContainer{
+    display: none;
 }
 
 .contentWrap{
@@ -55,8 +60,9 @@ body{
     align-items: center;
 }
 
-#question{
-    height: 10%;
+#question, #playerGuess, #correctAnswer, #questionCountdown{
+    height: 8%;
+    text-align: center;
 }
 
 #questionImg{
@@ -94,6 +100,11 @@ button{
 button:hover{
     background-color: #2b5a2a;
     cursor: pointer;
+}
+
+#answerVidContainer{
+    height: 82%;
+    width: 100%;
 }
 
 /*button #479558 hover #1f4016*/
