@@ -16,7 +16,7 @@
 
 body{
     font-family: 'arialboldmt';
-    font-size: 30px;
+    font-size: calc(12px + (72 - 12) * ((100vw - 300px) / (3840 - 300)));
     width: 100vw;
     height: 100vh;
     background-color: #4d0001;
@@ -44,6 +44,56 @@ body{
     background-color: #f5dfc6;
     border-top: 3.5vh solid #745527;
     border-bottom: 3.5vh solid #745527;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.content div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#question{
+    height: 10%;
+}
+
+#questionImg{
+    height: 35%;
+}
+
+#questionImg img{
+    height: 95%;
+    width: auto;
+    margin: auto;
+}
+
+#answers{
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    height: 40%;
+    justify-content: space-between;
+    margin: 1% auto auto auto;
+}
+
+#answers button{
+    width: 100%;
+}
+
+button{
+    font-family: 'arialboldmt';
+    font-size: calc(12px + (48 - 12) * ((100vw - 300px) / (3840 - 300)));
+    color: #ffffff;
+    background-color: #38753f;
+    padding: 1vh;
+    border: .2vw solid #ffffff;
+}
+
+button:hover{
+    background-color: #2b5a2a;
+    cursor: pointer;
 }
 
 /*button #479558 hover #1f4016*/

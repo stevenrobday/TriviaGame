@@ -82,7 +82,7 @@ var gameObj = {
             correctAnswer: "You're going to want to say \"no\" x times."
         },
         {
-            question: "Last chance to look at me, Hector.",
+            question: "Last chance to look at me, Hector...",
             answers: [
                 "Don't look at him. Instead, grimmace and drool!",
                 "Look at him, ding x-1 times and explode.",
@@ -123,7 +123,9 @@ var gameObj = {
                 "All of the above."
             ],
             correctIndex: 0,
-            correctAnswer: "Be sure to call Mike back, or he'll shoot your right hand!"
+            correctAnswer: "Be sure to call Mike back, or he'll shoot your right hand!",
+            imgTag: "<img src='assets/images/callMike.jpg' width='480'>"
+
         },
         {
             question: "The following is a benefit of wearing a hazmat suit:",
@@ -134,7 +136,7 @@ var gameObj = {
                 "You can inflate it, then shuffle left and right!"
             ],
             correctIndex: 3,
-            correctAnswer: "Inflate your hazmat suit and shuffle around a little. That's right. Now you're going places!" 
+            correctAnswer: "Inflate your hazmat suit and shuffle around a little. That's right. Now you're going places!"
         }
     ],
     results: [
@@ -164,4 +166,16 @@ var questionsArray;
 
 questionsArray = gameObj.questions;
 
-$("#question").append(questionsArray[8].question);
+var $question = $("#question");
+var $questionImg = $("#questionImg");
+var $questionOne = $("#questionOne");
+var $questionTwo = $("#questionTwo");
+var $questionThree = $("#questionThree");
+var $questionFour = $("#questionFour");
+
+$question.html(questionsArray[8].question);
+$questionImg.html(questionsArray[8].imgTag);
+$questionOne.html(questionsArray[8].answers[0]);
+$questionTwo.html(questionsArray[8].answers[1]);
+$questionThree.html(questionsArray[8].answers[2]);
+$questionFour.html(questionsArray[8].answers[3]);
