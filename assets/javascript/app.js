@@ -46,7 +46,9 @@ var gameObj = {
                 "No, The Heisenberg poisoned her with ricin."
             ],
             correctIndex: 3,
-            correctAnswer: "The Heisenberg poisoned the nice lady with ricin, so she will not be ok."
+            correctAnswer: "The Heisenberg poisoned the nice lady with ricin, so she will not be ok.",
+            imgTag: "<img src='assets/images/lydia.jpg' width='480'>",
+            videoTag: "<source src='assets/videos/lydia.mp4' type='video/mp4'>"
         },
         {
             question: "Look at me, Hector.",
@@ -57,18 +59,22 @@ var gameObj = {
                 "Look at him, ding x times and explode."
             ],
             correctIndex: 1,
-            correctAnswer: "You don't want to look at him. Just grimmace and drool instead."
+            correctAnswer: "You don't want to look at him. Just grimmace and drool instead.",
+            imgTag: "<img src='assets/images/lookAtMe.jpg' width='480'>",
+            videoTag: "<source src='assets/videos/lookAtMe.mp4' type='video/mp4'>"
         },
         {
-            question: "The following is totally in the Constitution:",
+            question: "The following is in the Constitution of America:",
             answers: [
                 "We hold these truths to be, like, duh!",
                 "Four score and, um, what would an additional seven years be?",
                 "I have a dream that one day even the state of Mississippi, sweltering with things that suck, will one day be pretty cool!",
-                "If you ask a cop if he's a narc, he has to tell you."
+                "If you ask a cop if he's a cop, he's like obligated to tell you."
             ],
             correctIndex: 3,
-            correctAnswer: "Cops have to tell you they're narcs if you ask them."
+            correctAnswer: "Cops have to tell you they're cops if you ask them.",
+            imgTag: "<img src='assets/images/constitution.jpg' width='480'>",
+            videoTag: "<source src='assets/videos/constitution.mp4' type='video/mp4'>"
         },
         {
             question: "As you take a broken plate out of the trash, you realize one of its pieces is missing.  How do you respond?",
@@ -188,10 +194,6 @@ $questionTwo.html(questionsArray[8].answers[1]);
 $questionThree.html(questionsArray[8].answers[2]);
 $questionFour.html(questionsArray[8].answers[3]);
 
-$(".gameBtns").on("click", function() {
-    assessAnswer(parseInt($(this).attr("data-index")));
-});
-
 function assessAnswer(answer) {
     if (answer === questionsArray[8].correctIndex) {
         $playerGuess.html("CORRECT!");
@@ -254,13 +256,22 @@ countdown.prototype = {
         that.$element.html(that.time);
         
         if(that.time === 0){
+            that.stop();
             that.cb();
         }
     }
 };
 
-var questionTimer = new countdown(10, $questionCountdown, gaveUp);
+//necessary for correct time to appear during fade in
+var questionTimerStart = 15;
+
+var questionTimer = new countdown(questionTimerStart, $questionCountdown, gaveUp);
 questionTimer.start();
+
+$(".gameBtns").on("click", function() {
+    questionTimer.stop();
+    assessAnswer(parseInt($(this).attr("data-index")));
+});
 /*
 $answerVideo.on("ended", function () {
     console.log("see ya");
