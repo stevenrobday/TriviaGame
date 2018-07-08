@@ -16,7 +16,7 @@
 
 body{
     font-family: 'arialboldmt';
-    font-size: calc(18px + (64 - 18) * ((100vw - 300px) / (3840 - 300)));
+    font-size: calc(18px + (40 - 18) * ((100vw - 300px) / (3840 - 300)));
     width: 100vw;
     min-height: 100vh;
     background-color: #4d0001;

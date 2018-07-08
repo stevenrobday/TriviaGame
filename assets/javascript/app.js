@@ -37,7 +37,7 @@ var gameObj = {
             correctIndex: 1,
             correctAnswer: "<p>If you hear a knock, you know it's The Heisenberg on the other side, so be sure to come to the door!</p>",
             imgTag: "<img src='assets/images/knocks.jpg' width='480'>",
-            videoTag: "<source src='assets/videos/knocks.mp4' type='video/mp4'>"
+            videoTag: "<video id='answerVideo' width='768' height='432' controls><source src='assets/videos/knocks.mp4' type='video/mp4'></video>"
         },
         {
             question: "<p>The nice lady in the robe... will she be ok?</p>",
@@ -50,7 +50,7 @@ var gameObj = {
             correctIndex: 3,
             correctAnswer: "<p>The Heisenberg poisoned the nice lady with ricin, so she will not be ok.</p>",
             imgTag: "<img src='assets/images/lydia.jpg' width='480'>",
-            videoTag: "<source src='assets/videos/lydia.mp4' type='video/mp4'>"
+            videoTag: "<video id='answerVideo' width='768' height='432' controls><source src='assets/videos/lydia.mp4' type='video/mp4'></video>"
         },
         {
             question: "<p>Look at me, Hector.</p>",
@@ -63,7 +63,7 @@ var gameObj = {
             correctIndex: 1,
             correctAnswer: "<p>You don't want to look at him. Just grimmace and drool instead.</p>",
             imgTag: "<img src='assets/images/lookAtMe.jpg' width='480'>",
-            videoTag: "<source src='assets/videos/lookAtMe.mp4' type='video/mp4'>"
+            videoTag: "<video id='answerVideo' width='768' height='432' controls><source src='assets/videos/lookAtMe.mp4' type='video/mp4'></video>"
         },
         {
             question: "<p>The following is in the Constitution of America:</p>",
@@ -76,7 +76,7 @@ var gameObj = {
             correctIndex: 3,
             correctAnswer: "<p>Cops have to tell you they're cops if you ask them.</p>",
             imgTag: "<img src='assets/images/constitution.jpg' width='480'>",
-            videoTag: "<source src='assets/videos/constitution.mp4' type='video/mp4'>"
+            videoTag: "<video id='answerVideo' width='768' height='432' controls><source src='assets/videos/constitution.mp4' type='video/mp4'></video>"
         },
         {
             question: "<p>As you take a broken plate out of the trash, you realize one of its pieces is missing.  How do you respond?</p>",
@@ -87,9 +87,9 @@ var gameObj = {
                 "<p>\"No. No. No. No no no no no no no no.\"</p>"
             ],
             correctIndex: 2,
-            correctAnswer: "<p>You're going to want to pause between each of your first two no's, and follow that with a rapid succession of no's.</p>",
+            correctAnswer: "<p>You're going to want to pause between each of your first two no's, then follow that with a rapid succession of no's.</p>",
             imgTag: "<img src='assets/images/plate.jpg' width='480'>",
-            videoTag: "<source src='assets/videos/plate.mp4' type='video/mp4'>"
+            videoTag: "<video id='answerVideo' width='768' height='432' controls><source src='assets/videos/plate.mp4' type='video/mp4'></video>"
         },
         {
             question: "<p>Last chance to look at me, Hector...</p>",
@@ -102,7 +102,7 @@ var gameObj = {
             correctIndex: 1,
             correctAnswer: "<p>In this case, you'll want to look at him, ding approximately 30 times and explode.</p>",
             imgTag: "<img src='assets/images/lastChance.jpg' width='480'>",
-            videoTag: "<source src='assets/videos/lastChance.mp4' type='video/mp4'>"
+            videoTag: "<video id='answerVideo' width='768' height='432' controls><source src='assets/videos/lastChance.mp4' type='video/mp4'></video>"
         },
         {
             question: "<p>Why might Mike want to hold off on killing Walter?</p>",
@@ -113,7 +113,9 @@ var gameObj = {
                 "<p>6353 Juan Tabo, Apartment 6.</p>"
             ],
             correctIndex: 3,
-            correctAnswer: "<p>Mike might want to hold off because \"6353 Juan Tabo, Apartment 6.\"</p>"
+            correctAnswer: "<p>Mike might want to hold off because \"6353 Juan Tabo, Apartment 6.\"</p>",
+            imgTag: "<img src='assets/images/holdOff.jpg' width='480'>",
+            videoTag: "<video id='answerVideo' width='768' height='432' controls><source src='assets/videos/holdOff.mp4' type='video/mp4'></video>"
         },
         {
             question: "<p>A turtle is about to explode.  What do you suppose his shell says?</p>",
@@ -126,7 +128,7 @@ var gameObj = {
             correctIndex: 0,
             correctAnswer: "<p>Before a turtle explodes, his shell should say \"Hola DEA\".</p>",
             imgTag: "<img src='assets/images/turtle.jpg' width='480'>",
-            videoTag: "<source src='assets/videos/turtle.mp4' type='video/mp4'>"
+            videoTag: "<video id='answerVideo' width='768' height='432' controls><source src='assets/videos/turtle.mp4' type='video/mp4'></video>"
         },
         {
             question: "<p>What does Mike do to people who don't return his calls?</p>",
@@ -139,7 +141,7 @@ var gameObj = {
             correctIndex: 0,
             correctAnswer: "<p>Mike will shoot your right hand if you don't call him back, so be sure to not make this mistake!</p>",
             imgTag: "<img src='assets/images/callMike.jpg' width='480'>",
-            videoTag: "<source src='assets/videos/callMike.mp4' type='video/mp4'>"
+            videoTag: "<video id='answerVideo' width='768' height='432' controls><source src='assets/videos/callMike.mp4' type='video/mp4'></video>"
         },
         {
             question: "<p>The following is a benefit of wearing a hazmat suit:",
@@ -152,7 +154,7 @@ var gameObj = {
             correctIndex: 3,
             correctAnswer: "<p>Inflate your hazmat suit and shuffle around a little. That's right. Now you're going places!</p>",
             imgTag: "<img src='assets/images/inflate.jpg' width='480'>",
-            videoTag: "<source src='assets/videos/inflate.mp4' type='video/mp4'>"
+            videoTag: "<video id='answerVideo' width='768' height='432' controls><source src='assets/videos/inflate.mp4' type='video/mp4'></video>"
         }
     ],
     results: [
@@ -182,6 +184,12 @@ var questionsArray;
 
 questionsArray = gameObj.questions;
 
+var questionsIndex;
+
+questionsIndex = Math.floor(Math.random() * questionsArray.length);
+
+var $video = $("video");
+
 var $questionContainer = $("#questionContainer");
 var $question = $("#question");
 var $questionImg = $("#questionImg");
@@ -195,18 +203,11 @@ var $questionCountdown = $("#questionCountdown");
 var $playerGuess = $("#playerGuess");
 var $answerContainer = $("#answerContainer");
 var $correctAnswer = $("#correctAnswer");
+var $answerVidContainer = $("#answerVidContainer");
 var $answerVideo = $("#answerVideo");
 
-
-$question.html(questionsArray[8].question);
-$questionImg.html(questionsArray[8].imgTag);
-$questionOne.html(questionsArray[8].answers[0]);
-$questionTwo.html(questionsArray[8].answers[1]);
-$questionThree.html(questionsArray[8].answers[2]);
-$questionFour.html(questionsArray[8].answers[3]);
-
 function assessAnswer(answer) {
-    if (answer === questionsArray[8].correctIndex) {
+    if (answer === questionsArray[questionsIndex].correctIndex) {
         $playerGuess.html("CORRECT!");
     }
     else {
@@ -216,59 +217,82 @@ function assessAnswer(answer) {
     appendAnswerAndFade();
 }
 
-function gaveUp(){
+function gaveUp() {
     $playerGuess.html("GIVE UP?");
 
     appendAnswerAndFade();
 }
 
 function appendAnswerAndFade() {
-    $correctAnswer.html(questionsArray[8].correctAnswer);
-    $answerVideo.html(questionsArray[8].videoTag);
+    $correctAnswer.html(questionsArray[questionsIndex].correctAnswer);
+    $answerVidContainer.html(questionsArray[questionsIndex].videoTag);
+    $answerVideo = $("#answerVideo");
+    $video = $("video");
+    addVideoEndedListener();
+    questionsArray.splice(questionsIndex, 1);
     $questionContainer.fadeOut(1000);
-    $answerContainer.fadeIn(1000, function() {
+    $answerContainer.fadeIn(1000, function () {
         videoPlay($answerVideo);
     });
 }
 
-function videoPlay($video) {
-    $video.trigger("play");
+function addVideoEndedListener(){
+    $video.on("ended", function () {
+        $video.off("ended");
+        if(questionsArray.length > 0){
+            questionsIndex = Math.floor(Math.random() * questionsArray.length);
+            populateQuestion();
+            $answerContainer.fadeOut(1000);
+            $questionContainer.fadeIn(1000, function () {
+                questionTimer.start();
+            });
+        }
+        else{
+            console.log("goodbye!");
+        }
+    });
 }
 
-$answerVideo.on("pause", function () {
-    //if(!$("#intro").get(0).ended)
-        console.log($(this));
-  });
+function videoPlay($videoToPlay) {
+    $videoToPlay.trigger("play");
+}
 
-var countdown = function(startVal, $element, cb){
+/*
+$video.on("pause", function () {
+    if (!$(this).get(0).ended) {
+        console.log($(this));
+    }
+});*/
+
+var countdown = function (startVal, $element, cb) {
     this.startVal = startVal;
     this.$element = $element;
     this.cb = cb;
 };
 
 countdown.prototype = {
-    reset: function() {
+    reset: function () {
         this.time = this.startVal;
     },
-    start: function() {
+    start: function () {
         var that = this;
 
         this.reset();
         this.$element.html(this.time);
-        this.id = setInterval(function(){
-            that.count(that);
+        this.id = setInterval(function () {
+            that.count();
         }, 1000);
     },
-    stop: function() {
+    stop: function () {
         clearInterval(this.id);
     },
-    count: function(that) {
-        that.time--;
-        that.$element.html(that.time);
-        
-        if(that.time === 0){
-            that.stop();
-            that.cb();
+    count: function () {
+        this.time--;
+        this.$element.html(this.time);
+
+        if (this.time === 0) {
+            this.stop();
+            this.cb();
         }
     }
 };
@@ -279,11 +303,20 @@ var questionTimerStart = 15;
 var questionTimer = new countdown(questionTimerStart, $questionCountdown, gaveUp);
 questionTimer.start();
 
-$questionBtns.on("click", function() {
+function populateQuestion(){
+    $question.html(questionsArray[questionsIndex].question);
+    $questionImg.html(questionsArray[questionsIndex].imgTag);
+    $questionOne.html(questionsArray[questionsIndex].answers[0]);
+    $questionTwo.html(questionsArray[questionsIndex].answers[1]);
+    $questionThree.html(questionsArray[questionsIndex].answers[2]);
+    $questionFour.html(questionsArray[questionsIndex].answers[3]);
+    $questionCountdown.html(questionTimerStart);
+}
+
+populateQuestion();
+
+$questionBtns.on("click", function () {
     questionTimer.stop();
     assessAnswer(parseInt($(this).attr("data-index")));
 });
-/*
-$answerVideo.on("ended", function () {
-    console.log("see ya");
-});*/
+
