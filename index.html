@@ -10,16 +10,59 @@
 </head>
 
 <body>
-    <div id="introVidContainer">
-        <video width="768" height="432" controls>
-            <source src="assets/videos/intro.mp4" type="video/mp4">
-        </video>
+    <div class="contentWrap" id="startContainer">
+        <div class="content">
+            <div>
+                <div class="word">
+                    <span class="box">
+                        <span class="boxLetters">
+                            <p>Br</p>
+                        </span>
+                    </span>
+                    <span class="regularLetters">
+                        <p>eaking</p>
+                    </span>
+                </div>
+                <div class="word">
+                    <span class="box">
+                        <span class="boxLetters">
+                            <p>Ba</p>
+                        </span>
+                    </span>
+                    <span class="regularLetters">
+                        <p>d</p>
+                    </span>
+                </div>
+                <div class="word">
+                    <span class="box">
+                        <span class="boxLetters">
+                            <p>As</p>
+                        </span>
+                    </span>
+                    <span class="regularLetters">
+                        <p>sessment</p>
+                    </span>
+                </div>
+            </div>
+            <div id="challenge">
+                <p>Are you bad enough to take on the likes of Tuco, Gale, and Gustavo? Press START to find out!</p>
+            </div>
+            <div id="btnContainer">
+                <button id="startBtn">START!</button>
+            </div>
+        </div>
+    </div>
+    <div class="contentWrap" id="introContainer">
+        <div class="content">
+            <div id="introVidContainer">
+            </div>
+        </div>
     </div>
     <div class="contentWrap" id="questionContainer">
         <div class="content">
             <div id="question"></div>
             <div id="questionImg"></div>
-            <div id="answers">
+            <div class="btnsContainer" id="answers">
                 <button class="questionBtns" id="questionOne" data-index="0"></button>
                 <button class="questionBtns" id="questionTwo" data-index="1"></button>
                 <button class="questionBtns" id="questionThree" data-index="2"></button>

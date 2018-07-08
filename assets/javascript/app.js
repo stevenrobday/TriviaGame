@@ -40,7 +40,7 @@ var gameObj = {
             videoTag: "<video id='answerVideo' width='768' height='432' controls><source src='assets/videos/knocks.mp4' type='video/mp4'></video>"
         },
         {
-            question: "<p>The nice lady in the robe... will she be ok?</p>",
+            question: "<p>The nice lady in the robe... will she be OK?</p>",
             answers: [
                 "<p>She'll be fine. She has a humidifier!</p>",
                 "<p>Yes, she's just got a case of the sniffles.</p>",
@@ -48,7 +48,7 @@ var gameObj = {
                 "<p>No, The Heisenberg poisoned her with ricin.</p>"
             ],
             correctIndex: 3,
-            correctAnswer: "<p>The Heisenberg poisoned the nice lady with ricin, so she will not be ok.</p>",
+            correctAnswer: "<p>The Heisenberg poisoned the nice lady with ricin, so she will not be OK.</p>",
             imgTag: "<img src='assets/images/lydia.jpg' width='480'>",
             videoTag: "<video id='answerVideo' width='768' height='432' controls><source src='assets/videos/lydia.mp4' type='video/mp4'></video>"
         },
@@ -71,7 +71,7 @@ var gameObj = {
                 "<p>We hold these truths to be, like, duh!</p>",
                 "<p>Four score and, um, what would an additional seven years be?</p>",
                 "<p>I have a dream that one day even the state of Mississippi, sweltering with things that suck, will one day be pretty cool!</p>",
-                "<p>If you ask a cop if he's a cop, he's like obligated to tell you.</p>"
+                "<p>If you ask a cop if he's a cop, he's like, obligated to tell you.</p>"
             ],
             correctIndex: 3,
             correctAnswer: "<p>Cops have to tell you they're cops if you ask them.</p>",
@@ -180,15 +180,17 @@ var gameObj = {
 var numQuestions = gameObj.questions.length;
 var numResults = gameObj.results.length;
 
+$startContainer = $("#startContainer");
+$startBtn = $("#startBtn");
+
+var $introContainer = $("#introContainer");
+var $introVidContainer = $("#introVidContainer");
+var $introVideoTag = "<video id='introVideo' width='768' height='432' controls><source src='assets/videos/intro.mp4' type='video/mp4'></video>";
+var $introVideo;
+var $video;
+
 var questionsArray;
-
-questionsArray = gameObj.questions;
-
 var questionsIndex;
-
-questionsIndex = Math.floor(Math.random() * questionsArray.length);
-
-var $video = $("video");
 
 var $questionContainer = $("#questionContainer");
 var $question = $("#question");
@@ -225,8 +227,17 @@ function gaveUp() {
 
 function appendAnswerAndFade() {
     $correctAnswer.html(questionsArray[questionsIndex].correctAnswer);
+
+    /*just putting the source tag inside the video tag
+    doesn't work.  it will keep on playing the first video.
+    so instead, we put the video and source tags inside the
+    video container element*/
     $answerVidContainer.html(questionsArray[questionsIndex].videoTag);
+
+    //change value of var to newly created element so we can play it
     $answerVideo = $("#answerVideo");
+
+    //get any newly created video tag we may have just made
     $video = $("video");
     addVideoEndedListener();
     questionsArray.splice(questionsIndex, 1);
@@ -301,7 +312,6 @@ countdown.prototype = {
 var questionTimerStart = 15;
 
 var questionTimer = new countdown(questionTimerStart, $questionCountdown, gaveUp);
-questionTimer.start();
 
 function populateQuestion(){
     $question.html(questionsArray[questionsIndex].question);
@@ -313,7 +323,17 @@ function populateQuestion(){
     $questionCountdown.html(questionTimerStart);
 }
 
-populateQuestion();
+$startBtn.on("click", function () {
+    questionsArray = gameObj.questions;
+    $introVidContainer.html($introVideoTag);
+    $introVideo = $("#introVideo");
+    $video = $("video");
+    addVideoEndedListener();
+    $startContainer.fadeOut(1000);
+    $introContainer.fadeIn(1000, function () {
+        videoPlay($introVideo);
+    });
+});
 
 $questionBtns.on("click", function () {
     questionTimer.stop();
