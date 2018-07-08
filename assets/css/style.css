@@ -17,14 +17,13 @@
 body{
     font-family: 'arialboldmt';
     font-size: calc(18px + (48 - 18) * ((100vw - 300px) / (3840 - 300)));
-    width: 100vw;
-    min-height: 100vh;
     background-color: #4d0001;
+    min-height: 100vh;
     position: relative;
     font-weight: normal;
 }
 
-#introContainer, #questionContainer, #answerContainer{
+#introContainer, #questionContainer, #answerContainer, #resultsContainer, #allResultsContainer{
     display: none;
 }
 
@@ -37,6 +36,9 @@ body{
     background-color: #efd004;
     border-top: 2vh solid #e05618;
     border-bottom: 2vh solid #e05618;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
 .content{
@@ -54,11 +56,34 @@ body{
     justify-content: flex-start;
 }
 
-.content div{
+.resultsWrap{
+    margin: 5vh auto;
+    min-height: 86vh;
+    background-color: #efd004;
+    border-top: 2vh solid #e05618;
+    border-bottom: 2vh solid #e05618;  
+}
+
+.contentResults{
+    margin: 2vh auto;
+    box-sizing: border-box;
+    min-height: 82vh;
+    background-color: #f5dfc6;
+    border-top: 3.5vh solid #745527;
+    border-bottom: 3.5vh solid #745527;
+    display: flex;
+    flex-direction: column;
+}
+
+.content div, .contentResults div{
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
+}
+
+.contentResults div{
+    margin: 1% 2%;
 }
 
 .word{
@@ -97,8 +122,12 @@ body{
     height: 35%;
 }
 
-#questionImg img{
-    height: 95%;
+.resultsImg{
+    height: 30vh;
+}
+
+#questionImg img, .resultsImg img{
+    height: 100%;
     width: auto;
     margin: auto;
 }
@@ -137,6 +166,28 @@ button{
 button:hover{
     background-color: #2b5a2a;
     cursor: pointer;
+}
+
+.spacer{
+    margin: 0;
+    width: auto;
+    height: 5px;
+    background-color: #e05618;
+}
+
+footer{
+    height: 5vh;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    background-color: #4d0001;
+    display: flex;
+}
+
+#backBtn{
+    padding: 0 2vh;
+    font-size: calc(12px + (40 - 12) * ((100vw - 300px) / (3840 - 300)));
+    margin: auto;
 }
 
 #answerVidContainer{
