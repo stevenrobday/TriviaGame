@@ -30,12 +30,14 @@ var gameObj = {
             question: "<p>Knock, knock.</p>",
             answers: [
                 "<p>Who's there?</p>",
-                "<p>I'm the one who knocks!</p>",
+                "<p>I am the one who knocks!</p>",
                 "<p>Orange?  Is that you again?</p>",
                 "<p>We don't want any!</p>"
             ],
             correctIndex: 1,
-            correctAnswer: "<p>If you hear a knock, you know it's The Heisenberg on the other side, so be sure to come to the door.</p>"
+            correctAnswer: "<p>If you hear a knock, you know it's The Heisenberg on the other side, so be sure to come to the door!</p>",
+            imgTag: "<img src='assets/images/knocks.jpg' width='480'>",
+            videoTag: "<source src='assets/videos/knocks.mp4' type='video/mp4'>"
         },
         {
             question: "<p>The nice lady in the robe... will she be ok?</p>",
@@ -55,8 +57,8 @@ var gameObj = {
             answers: [
                 "<p>Look at him.</p>",
                 "<p>Don't look at him. Instead, grimmace and drool!</p>",
-                "<p>Look at him, ding x-1 times and explode.</p>",
-                "<p>Look at him, ding x times and explode.</p>"
+                "<p>Look at him, ding approximately 30 times and explode.</p>",
+                "<p>Ding approximately 30 times, look at him and explode.</p>"
             ],
             correctIndex: 1,
             correctAnswer: "<p>You don't want to look at him. Just grimmace and drool instead.</p>",
@@ -93,12 +95,14 @@ var gameObj = {
             question: "<p>Last chance to look at me, Hector...</p>",
             answers: [
                 "<p>Don't look at him. Instead, grimmace and drool!</p>",
-                "<p>Look at him, ding x-1 times and explode.</p>",
-                "<p>Look at him, ding x times and explode.</p>",
-                "<p>Explode, then look at him.</p>"
+                "<p>Look at him, ding approximately 30 times and explode.</p>",
+                "<p>Ding approximately 30 times, look at him and explode.</p>",
+                "<p>Explode, look at him and ding approximately 30 times.</p>"
             ],
-            correctIndex: 2,
-            correctAnswer: "<p>In this case, you'll want to look at him, ding x times and explode.</p>"
+            correctIndex: 1,
+            correctAnswer: "<p>In this case, you'll want to look at him, ding approximately 30 times and explode.</p>",
+            imgTag: "<img src='assets/images/lastChance.jpg' width='480'>",
+            videoTag: "<source src='assets/videos/lastChance.mp4' type='video/mp4'>"
         },
         {
             question: "<p>Why might Mike want to hold off on killing Walter?</p>",
@@ -106,21 +110,23 @@ var gameObj = {
                 "<p>It would be uncouth.</p>",
                 "<p>He's already dead.</p>",
                 "<p>He's not worth the blood on Mike's shirt.</p>",
-                "<p>Gal's address.</p>"
+                "<p>6353 Juan Tabo, Apartment 6.</p>"
             ],
             correctIndex: 3,
-            correctAnswer: "<p>Mike might want to hold off on killing him because Gal's address.</p>"
+            correctAnswer: "<p>Mike might want to hold off because \"6353 Juan Tabo, Apartment 6.\"</p>"
         },
         {
             question: "<p>A turtle is about to explode.  What do you suppose his shell says?</p>",
             answers: [
-                "<p>Hola DEA.</p>",
-                "<p>Adios, amigos!</p>",
-                "<p>Time's up!</p>",
-                "<p>Mario has taken a sadistic turn.</p>"
+                "<p>HOLA DEA</p>",
+                "<p>ADIOS AMIGOS!</p>",
+                "<p>TIME'S UP!</p>",
+                "<p>MARIO HAS TAKEN A SADISTIC TURN.</p>"
             ],
             correctIndex: 0,
-            correctAnswer: "<p>Before a turtle explodes, his shell should say \"Hola DEA\".</p>"
+            correctAnswer: "<p>Before a turtle explodes, his shell should say \"Hola DEA\".</p>",
+            imgTag: "<img src='assets/images/turtle.jpg' width='480'>",
+            videoTag: "<source src='assets/videos/turtle.mp4' type='video/mp4'>"
         },
         {
             question: "<p>What does Mike do to people who don't return his calls?</p>",
@@ -144,7 +150,9 @@ var gameObj = {
                 "<p>You can inflate it, then shuffle left and right!</p>"
             ],
             correctIndex: 3,
-            correctAnswer: "<p>Inflate your hazmat suit and shuffle around a little. That's right. Now you're going places!</p>"
+            correctAnswer: "<p>Inflate your hazmat suit and shuffle around a little. That's right. Now you're going places!</p>",
+            imgTag: "<img src='assets/images/inflate.jpg' width='480'>",
+            videoTag: "<source src='assets/videos/inflate.mp4' type='video/mp4'>"
         }
     ],
     results: [
