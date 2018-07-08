@@ -27,122 +27,124 @@ $("video").on("pause", function () {
 var gameObj = {
     questions: [
         {
-            question: "Your wife lowers her side of the bed.",
+            question: "<p>Knock, knock.</p>",
             answers: [
-                "Talk about rocks.",
-                "Turn to her and tell her you love and appreciate her.",
-                "You placed your geodes underneath, so she's in for a bumpy night's sleep.",
-                "Be extra petty and raise your side of the bed up."
+                "<p>Who's there?</p>",
+                "<p>I'm the one who knocks!</p>",
+                "<p>Orange?  Is that you again?</p>",
+                "<p>We don't want any!</p>"
             ],
-            correctIndex: 3,
-            correctAnswer: "You want to be extra petty and raise your side of the bed up."
+            correctIndex: 1,
+            correctAnswer: "<p>If you hear a knock, you know it's The Heisenberg on the other side, so be sure to come to the door.</p>"
         },
         {
-            question: "The nice lady in the robe... will she be ok?",
+            question: "<p>The nice lady in the robe... will she be ok?</p>",
             answers: [
-                "She'll be fine. She has a humidifier!",
-                "Yes, she's just got a case of the sniffles.",
-                "A cup of hot tea should do the trick!",
-                "No, The Heisenberg poisoned her with ricin."
+                "<p>She'll be fine. She has a humidifier!</p>",
+                "<p>Yes, she's just got a case of the sniffles.</p>",
+                "<p>A cup of hot tea should do the trick!</p>",
+                "<p>No, The Heisenberg poisoned her with ricin.</p>"
             ],
             correctIndex: 3,
-            correctAnswer: "The Heisenberg poisoned the nice lady with ricin, so she will not be ok.",
+            correctAnswer: "<p>The Heisenberg poisoned the nice lady with ricin, so she will not be ok.</p>",
             imgTag: "<img src='assets/images/lydia.jpg' width='480'>",
             videoTag: "<source src='assets/videos/lydia.mp4' type='video/mp4'>"
         },
         {
-            question: "Look at me, Hector.",
+            question: "<p>Look at me, Hector.</p>",
             answers: [
-                "Look at him.",
-                "Don't look at him. Instead, grimmace and drool!",
-                "Look at him, ding x-1 times and explode.",
-                "Look at him, ding x times and explode."
+                "<p>Look at him.</p>",
+                "<p>Don't look at him. Instead, grimmace and drool!</p>",
+                "<p>Look at him, ding x-1 times and explode.</p>",
+                "<p>Look at him, ding x times and explode.</p>"
             ],
             correctIndex: 1,
-            correctAnswer: "You don't want to look at him. Just grimmace and drool instead.",
+            correctAnswer: "<p>You don't want to look at him. Just grimmace and drool instead.</p>",
             imgTag: "<img src='assets/images/lookAtMe.jpg' width='480'>",
             videoTag: "<source src='assets/videos/lookAtMe.mp4' type='video/mp4'>"
         },
         {
-            question: "The following is in the Constitution of America:",
+            question: "<p>The following is in the Constitution of America:</p>",
             answers: [
-                "We hold these truths to be, like, duh!",
-                "Four score and, um, what would an additional seven years be?",
-                "I have a dream that one day even the state of Mississippi, sweltering with things that suck, will one day be pretty cool!",
-                "If you ask a cop if he's a cop, he's like obligated to tell you."
+                "<p>We hold these truths to be, like, duh!</p>",
+                "<p>Four score and, um, what would an additional seven years be?</p>",
+                "<p>I have a dream that one day even the state of Mississippi, sweltering with things that suck, will one day be pretty cool!</p>",
+                "<p>If you ask a cop if he's a cop, he's like obligated to tell you.</p>"
             ],
             correctIndex: 3,
-            correctAnswer: "Cops have to tell you they're cops if you ask them.",
+            correctAnswer: "<p>Cops have to tell you they're cops if you ask them.</p>",
             imgTag: "<img src='assets/images/constitution.jpg' width='480'>",
             videoTag: "<source src='assets/videos/constitution.mp4' type='video/mp4'>"
         },
         {
-            question: "As you take a broken plate out of the trash, you realize one of its pieces is missing.  How do you respond?",
+            question: "<p>As you take a broken plate out of the trash, you realize one of its pieces is missing.  How do you respond?</p>",
             answers: [
-                "\"Ah yes, just as I suspected!\"",
-                "\"What did I tell Skyler about separating the trash?\"",
-                "\"No(x?)\"",
-                "\"No (x+1?)\""
+                "<p>\"Ah yes, just as I suspected!\"</p>",
+                "<p>\"What did I tell Skyler about separating the trash?\"</p>",
+                "<p>\"No. No. No no no no no no no no.\"</p>",
+                "<p>\"No. No. No. No no no no no no no no.\"</p>"
             ],
             correctIndex: 2,
-            correctAnswer: "You're going to want to say \"no\" x times."
+            correctAnswer: "<p>You're going to want to pause between each of your first two no's, and follow that with a rapid succession of no's.</p>",
+            imgTag: "<img src='assets/images/plate.jpg' width='480'>",
+            videoTag: "<source src='assets/videos/plate.mp4' type='video/mp4'>"
         },
         {
-            question: "Last chance to look at me, Hector...",
+            question: "<p>Last chance to look at me, Hector...</p>",
             answers: [
-                "Don't look at him. Instead, grimmace and drool!",
-                "Look at him, ding x-1 times and explode.",
-                "Look at him, ding x times and explode.",
-                "Explode, then look at him."
+                "<p>Don't look at him. Instead, grimmace and drool!</p>",
+                "<p>Look at him, ding x-1 times and explode.</p>",
+                "<p>Look at him, ding x times and explode.</p>",
+                "<p>Explode, then look at him.</p>"
             ],
             correctIndex: 2,
-            correctAnswer: "In this case, you'll want to look at him, ding x times and explode."
+            correctAnswer: "<p>In this case, you'll want to look at him, ding x times and explode.</p>"
         },
         {
-            question: "Why might Mike want to hold off on killing Walter?",
+            question: "<p>Why might Mike want to hold off on killing Walter?</p>",
             answers: [
-                "It would be uncouth.",
-                "He's already dead.",
-                "He's not worth the blood on Mike's shirt.",
-                "Gal's address."
+                "<p>It would be uncouth.</p>",
+                "<p>He's already dead.</p>",
+                "<p>He's not worth the blood on Mike's shirt.</p>",
+                "<p>Gal's address.</p>"
             ],
             correctIndex: 3,
-            correctAnswer: "Mike might want to hold off on killing him because Gal's address."
+            correctAnswer: "<p>Mike might want to hold off on killing him because Gal's address.</p>"
         },
         {
-            question: "A turtle is about to explode.  What do you suppose his shell says?",
+            question: "<p>A turtle is about to explode.  What do you suppose his shell says?</p>",
             answers: [
-                "Hola DEA.",
-                "Adios, amigos!",
-                "Time's up!",
-                "Mario has taken a sadistic turn."
+                "<p>Hola DEA.</p>",
+                "<p>Adios, amigos!</p>",
+                "<p>Time's up!</p>",
+                "<p>Mario has taken a sadistic turn.</p>"
             ],
             correctIndex: 0,
-            correctAnswer: "Before a turtle explodes, his shell should say \"Hola DEA\"."
+            correctAnswer: "<p>Before a turtle explodes, his shell should say \"Hola DEA\".</p>"
         },
         {
-            question: "What does Mike do to people who don't return his calls?",
+            question: "<p>What does Mike do to people who don't return his calls?</p>",
             answers: [
-                "Shoot their right hand.",
-                "Shoot their left hand.",
-                "Shoot them in the foot and tell them next time it's their brains.",
-                "All of the above."
+                "<p>Shoot their right hand.</p>",
+                "<p>Shoot their left hand.</p>",
+                "<p>Shoot them in the foot and tell them next time it's their brains.</p>",
+                "<p>All of the above.</p>"
             ],
             correctIndex: 0,
-            correctAnswer: "Mike will shoot your right hand if you don't call him back, so be sure not to make this mistake!",
+            correctAnswer: "<p>Mike will shoot your right hand if you don't call him back, so be sure to not make this mistake!</p>",
             imgTag: "<img src='assets/images/callMike.jpg' width='480'>",
             videoTag: "<source src='assets/videos/callMike.mp4' type='video/mp4'>"
         },
         {
-            question: "The following is a benefit of wearing a hazmat suit:",
+            question: "<p>The following is a benefit of wearing a hazmat suit:",
             answers: [
-                "It prevents inhalation of toxic chemicals.",
-                "It ensures no contamination of the product, though it doesn't account for flies...",
-                "It prevents you from getting high on the job though absorption.",
-                "You can inflate it, then shuffle left and right!"
+                "<p>It prevents inhalation of toxic chemicals.</p>",
+                "<p>It ensures no contamination of the product, though it doesn't account for flies...</p>",
+                "<p>It prevents you from getting high on the job though absorption.</p>",
+                "<p>You can inflate it, then shuffle left and right!</p>"
             ],
             correctIndex: 3,
-            correctAnswer: "Inflate your hazmat suit and shuffle around a little. That's right. Now you're going places!"
+            correctAnswer: "<p>Inflate your hazmat suit and shuffle around a little. That's right. Now you're going places!</p>"
         }
     ],
     results: [
@@ -153,7 +155,7 @@ var gameObj = {
             resultText: "<p>YOU ARE A PLUCKY STARTUP!</p><p>You levelled up your infamy by beating Tuco, and are making a decent living cooking meth in the RV. And they finally locked up Jesse's idiot friend, Badger! Incidentally, Hank just found out what you're up to, and him and Steve Gomez are on their way to put you behind bars for life.</p><p>GAME OVER</p><p>You need to go talk to the NPC Saul, who saves you when Badger gets busted (an event that gets triggered one game-day cycle after the player takes control of Jesse and crushes Spooge's head with the ATM machine).</p>"
         },
         {
-            resultText: "<p>YOU ARE A MID-GRADE COOK!</p><p>Mike gives you one last phone call. It's a tough choice between your wife and your best friend, but you side with the latter. The game switches to Jesse, and a boss appears! He's unarmed, and you have a gun. But you fail the quick-time event and are defeated. Then when the game switches back to Walter, Mike takes you down to the basement and executes you.</p><p>GAME OVER</p><p>When you're about to land the finishing blow on Gale, the camera spins around to face you. Do not adjust the analog stick to try to correct this, you'll end up moving your arm, missing Gale's head entirely and alerting the neighbors!</p>"
+            resultText: "<p>YOU ARE A MID-GRADE COOK!</p><p>Mike gives you one last phone call. It's a tough choice between your wife and your best friend, but you side with the latter. The game switches to Jesse, and a boss appears! He's unarmed, and you have a gun. But you fail the quick-time event and are defeated. Then when the game switches back to Walter, Mike takes you down to the basement and executes you.</p><p>GAME OVER</p><p>When you're about to land the finishing blow on Gale, the camera spins around to face you. Do not adjust the analog stick to try to correct this; you'll end up moving your arm, missing Gale's head entirely and alerting the neighbors!</p>"
         },
         {
             resultText: "<p>YOU ARE A MASTER CHEF!</p><p>Things are looking grim. Your best friend hates you, and your boss wants you dead. Your wife gave your money to Beneke, which means you can't skip town and try your luck there. So you play a round of spin-the-gun-on-the-table, and win! Later, you pass by Jesse's girlfriend's kid. You don't even know his name, so you continue walking, and hope you didn't upset Jesse doing so. A few days later, Gustavo has you executed.</p><p>GAME OVER</p><p>After beating the gun-spinning mini-game, the gun points to a plantar box.  You need this in your inventory to defeat the mini-boss. This is easy to miss if you're not playing on easy mode (where the plant highlights), so be sure to pick it up!</p>"
@@ -175,6 +177,7 @@ questionsArray = gameObj.questions;
 var $questionContainer = $("#questionContainer");
 var $question = $("#question");
 var $questionImg = $("#questionImg");
+var $questionBtns = $(".questionBtns");
 var $questionOne = $("#questionOne");
 var $questionTwo = $("#questionTwo");
 var $questionThree = $("#questionThree");
@@ -268,7 +271,7 @@ var questionTimerStart = 15;
 var questionTimer = new countdown(questionTimerStart, $questionCountdown, gaveUp);
 questionTimer.start();
 
-$(".gameBtns").on("click", function() {
+$questionBtns.on("click", function() {
     questionTimer.stop();
     assessAnswer(parseInt($(this).attr("data-index")));
 });
