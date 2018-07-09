@@ -1,15 +1,15 @@
 /*from fontsmarket.com*/
 @font-face {
-    font-family: 'arialboldmt';
-    src: url('../fonts/arialboldmt.woff') format('woff');
+    font-family: "arialboldmt";
+    src: url("../fonts/arialboldmt.woff") format('woff');
     font-weight: normal;
     font-style: normal;
 }
 
 /*from fontsgeek.com*/
 @font-face {
-    font-family: 'bundyregular';
-    src: url('../fonts/bundyregular.woff') format('woff');
+    font-family: "bundyregular";
+    src: url("../fonts/bundyregular.woff") format('woff');
     font-weight: normal;
     font-style: normal;
 }
