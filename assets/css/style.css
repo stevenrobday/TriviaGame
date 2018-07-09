@@ -15,7 +15,7 @@
 }
 
 body{
-    font-family: 'arialboldmt';
+    font-family: "arialboldmt";
     font-size: calc(18px + (48 - 18) * ((100vw - 300px) / (3840 - 300)));
     background-color: #4d0001;
     min-height: 100vh;
@@ -106,7 +106,7 @@ body{
 }
 
 .regularLetters{
-    font-family: 'bundy';
+    font-family: "bundyregular";
     margin-left: 5px;
 }
 
@@ -132,7 +132,7 @@ body{
 }
 
 button{
-    font-family: 'arialboldmt';
+    font-family: "arialboldmt";
     font-size: calc(18px + (48 - 18) * ((100vw - 300px) / (3840 - 300)));
     color: #ffffff;
     background-color: #38753f;
