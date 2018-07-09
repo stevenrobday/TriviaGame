@@ -48,13 +48,23 @@
                 <p>Are you bad enough to take on the likes of Tuco, Gale, and Gustavo? Press START to find out!</p>
             </div>
             <div id="btnContainer">
-                <button id="startBtn"><p>START!</p></button>
+                <button id="startBtn">
+                    <p>START!</p>
+                </button>
             </div>
         </div>
     </div>
     <div class="contentWrap" id="introContainer">
         <div class="content">
-            <div id="introVidContainer">
+            <div id="outerIntroVidContainer">
+                <div id="introVidContainer">
+                </div>
+                <div class="videoCountdownContainer">
+                    <div class="videoMessage">
+                    </div>
+                    <div class="videoCountdown">
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -75,7 +85,14 @@
         <div class="content">
             <div id="playerGuess"></div>
             <div id="correctAnswer"></div>
-            <div id="answerVidContainer">
+            <div id="outerAnswerVidContainer">
+                <div id="answerVidContainer"></div>
+                <div class="videoCountdownContainer">
+                    <div class="videoMessage">
+                    </div>
+                    <div class="videoCountdown">
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -86,7 +103,11 @@
     <div class="resultsWrap" id="allResultsContainer">
         <div class="contentResults">
         </div>
-        <footer><button id="backBtn"><p>BACK TO RESULTS</p></button></footer>
+        <footer>
+            <button id="backBtn">
+                <p>BACK TO RESULTS</p>
+            </button>
+        </footer>
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>

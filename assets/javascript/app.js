@@ -186,6 +186,9 @@ var $introVideoTag = "<video id='introVideo' width='768' height='432'><source sr
 var $introVideo;
 var $video;
 
+$videoMessage = $(".videoMessage");
+$videoCountdown = $(".videoCountdown");
+
 var questionsArray;
 var questionsIndex;
 
@@ -205,7 +208,8 @@ var $correctAnswer = $("#correctAnswer");
 var $answerVidContainer = $("#answerVidContainer");
 var $answerVideo = $("#answerVideo");
 
-var $videoContainers = $(".videoContainers");
+var $videoToPlay;
+var $containerToFade;
 
 var $resultsContainer = $("#resultsContainer");
 var $resultsContainerContent = $("#resultsContainer .contentResults");
@@ -258,10 +262,12 @@ function appendAnswerAndFade() {
 
     //change value of var to newly created element so we can play it
     $answerVideo = $("#answerVideo");
-
+    $videoToPlay = $answerVideo;
+    $containerToFade = $answerContainer;
     //get any newly created video tag we may have just made
     $video = $("video");
-    addVideoEndedListener($answerVideo, $answerContainer);
+    addVideoTimerListeners();
+    addVideoEndedListener();
     questionsArray.splice(questionsIndex, 1);
     $questionContainer.fadeOut(800, function () {
         $answerContainer.fadeIn(800, function () {
@@ -270,75 +276,74 @@ function appendAnswerAndFade() {
     });
 }
 
-function addVideoEndedListener($videoToPlay, $containerToFade) {
+function addVideoEndedListener() {
     $videoToPlay.on("ended", function () {
-        $(this).get(0).controls = false;
-        console.log($video.get(0).controls);
-        $(this).off("ended");
-        if (questionsArray.length > 0) {
-            questionsIndex = Math.floor(Math.random() * questionsArray.length);
-            populateQuestion();
-
-            $questionBtns.on("click", function () {
-                $questionBtns.off("click");
-                questionTimer.stop();
-                assessAnswer(parseInt($(this).attr("data-index")));
-            });
-
-            $containerToFade.fadeOut(800, function () {
-                $questionContainer.fadeIn(800, function () {
-                    questionTimer.start();
-                });
-            });
-        }
-        else {
-            var resultIndex = Math.floor(correctAnswers / resultsDenominator);
-            if (correctAnswers === numQuestions) {
-                resultIndex--;
-            }
-
-            $resultsContainerContent.html("<div><p>You got " + correctAnswers + " out of " + numQuestions + "!</div>");
-            $resultsContainerContent.append(gameObj.results[resultIndex]);
-            $resultsContainerContent.append(resultsBtns);
-
-            $restartBtn = $("#restartBtn");
-            $seeAllBtn = $("#seeAllBtn");
-
-            $restartBtn.on("click", function () {
-                $(this).off("click");
-                $seeAllBtn.off("click");
-                startGame();
-                $resultsContainer.fadeOut(800, function () {
-                    $introContainer.fadeIn(800, function () {
-                        videoPlay($introVideo);
-                    });
-                });
-            });
-
-            $seeAllBtn.on("click", function () {
-                $resultsContainer.fadeOut(800, function () {
-                    $allResultsContainer.fadeIn(800);
-                });
-            });
-
-            $answerContainer.fadeOut(800, function () {
-                $resultsContainer.fadeIn(800);
-            });
-        }
+        videoEnded();
     });
+}
+
+function videoEnded() {
+    emptyVideoContainer();
+    $videoToPlay.get(0).controls = false;
+    $videoToPlay.off("ended");
+    if (questionsArray.length > 0) {
+        questionsIndex = Math.floor(Math.random() * questionsArray.length);
+        populateQuestion();
+
+        $questionBtns.off("click");
+
+        $questionBtns.on("click", function () {
+            $questionBtns.off("click");
+            questionTimer.stop();
+            assessAnswer(parseInt($(this).attr("data-index")));
+        });
+
+        $containerToFade.fadeOut(800, function () {
+            $questionContainer.fadeIn(800, function () {
+                questionTimer.start();
+            });
+        });
+    }
+    else {
+        var resultIndex = Math.floor(correctAnswers / resultsDenominator);
+        if (correctAnswers === numQuestions) {
+            resultIndex--;
+        }
+
+        $resultsContainerContent.html("<div><p>You got " + correctAnswers + " out of " + numQuestions + "!</div>");
+        $resultsContainerContent.append(gameObj.results[resultIndex]);
+        $resultsContainerContent.append(resultsBtns);
+
+        $restartBtn = $("#restartBtn");
+        $seeAllBtn = $("#seeAllBtn");
+
+        $restartBtn.on("click", function () {
+            $(this).off("click");
+            $seeAllBtn.off("click");
+            startGame();
+            $resultsContainer.fadeOut(800, function () {
+                $introContainer.fadeIn(800, function () {
+                    videoPlay($introVideo);
+                });
+            });
+        });
+
+        $seeAllBtn.on("click", function () {
+            $resultsContainer.fadeOut(800, function () {
+                $allResultsContainer.fadeIn(800);
+            });
+        });
+
+        $answerContainer.fadeOut(800, function () {
+            $resultsContainer.fadeIn(800);
+        });
+    }
 }
 
 function videoPlay($videoToPlay) {
     $videoToPlay.trigger("play");
     $videoToPlay.get(0).controls = true;
 }
-
-/*
-$video.on("pause", function () {
-    if (!$(this).get(0).ended) {
-        console.log($(this));
-    }
-});*/
 
 var timer = function (startVal, $element, cb) {
     this.startVal = startVal;
@@ -354,7 +359,7 @@ timer.prototype = {
         var that = this;
 
         this.reset();
-        this.$element.html(this.time);
+        this.$element.html("<p>" + this.time + "</p>");
         this.id = setInterval(function () {
             that.count();
         }, 1000);
@@ -364,7 +369,7 @@ timer.prototype = {
     },
     count: function () {
         this.time--;
-        this.$element.html(this.time);
+        this.$element.html("<p>" + this.time + "</p>");
 
         if (this.time === 0) {
             this.stop();
@@ -375,8 +380,34 @@ timer.prototype = {
 
 //necessary for correct time to appear during fade in
 var questionTimerStart = 15;
+var videoTimerStart = 10;
 
 var questionTimer = new timer(questionTimerStart, $questionCountdown, gaveUp);
+
+var videoTimer = new timer(videoTimerStart, $videoCountdown, videoEnded);
+
+function addVideoTimerListeners() {
+    $video.off("pause");
+    $video.off("play");
+
+    $video.on("pause", function () {
+        console.log("hi");
+        if (!$(this).get(0).ended) {
+            $videoMessage.html("<p>Play the video before you're out of time!</p>");
+            videoTimer.start();
+        }
+    });
+
+    $video.on("play", function () {
+        videoTimer.stop();
+        emptyVideoContainer();
+    });
+}
+
+function emptyVideoContainer() {
+    $videoMessage.empty();
+    $videoCountdown.empty();
+}
 
 function populateQuestion() {
     $question.html(questionsArray[questionsIndex].question);
@@ -400,11 +431,15 @@ $startBtn.on("click", function () {
 function startGame() {
     correctAnswers = 0;
     questionsArray = gameObj.questions.slice();
-    console.log(questionsArray);
     $introVidContainer.html($introVideoTag);
     $introVideo = $("#introVideo");
     $video = $("video");
-    addVideoEndedListener($introVideo, $introContainer);
+
+    $videoToPlay = $introVideo;
+    $containerToFade = $introContainer;
+
+    addVideoTimerListeners();
+    addVideoEndedListener();
 }
 
 $backBtn.on("click", function () {

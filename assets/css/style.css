@@ -190,19 +190,52 @@ footer{
     margin: auto;
 }
 
-#answerVidContainer{
+#outerIntroVidContainer{
+    margin: auto;
+    height: 90%;
+    position: relative;
+}
+
+#outerAnswerVidContainer{
     height: 82%;
     width: 100%;
+    position: relative;
 }
 
 /*button #479558 hover #1f4016*/
 
 #introVidContainer{
-    margin: auto;
-    height: 90%;
+    height: 100%;
 }
 
-video{
+#answerVidContainer{
     height: 100%;
-    width: auto;
+}
+
+.videoCountdownContainer{
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    color: #ffffff;
+}
+
+.videoMessage, .videoCountdown{
+    margin: 1%;
+}
+
+@media all and (min-aspect-ratio: 4/3){
+    video{
+        height: 100%;
+        width: auto;
+    }
+}
+
+@media all and (max-aspect-ratio: 4/3){
+    video{
+        height: auto;
+        width: 100%;
+    }
 }
