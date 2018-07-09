@@ -196,6 +196,7 @@ footer{
 }
 
 #outerAnswerVidContainer{
+    margin: auto;
     position: relative;
 }
 
