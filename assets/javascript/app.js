@@ -283,6 +283,7 @@ function addVideoEndedListener() {
 }
 
 function videoEnded() {
+    videoTimer.stop();
     emptyVideoContainer();
     $videoToPlay.get(0).controls = false;
     $videoToPlay.off("ended");
