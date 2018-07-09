@@ -133,7 +133,7 @@ body{
 
 button{
     font-family: "arialboldmt";
-    font-size: calc(18px + (56 - 12) * ((100vw - 300px) / (3840 - 300)));
+    font-size: calc(18px + (56 - 18) * ((100vw - 300px) / (3840 - 300)));
     color: #ffffff;
     background-color: #38753f;
     padding: 1vh 2vh;
