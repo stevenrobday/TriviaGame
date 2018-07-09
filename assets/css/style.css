@@ -19,7 +19,6 @@ body{
     background-color: #4d0001;
     min-height: 100vh;
     position: relative;
-    font-weight: normal;
 }
 
 #introContainer, #questionContainer, #answerContainer, #resultsContainer, #allResultsContainer{
@@ -35,9 +34,6 @@ body{
     background-color: #efd004;
     border-top: 2vh solid #e05618;
     border-bottom: 2vh solid #e05618;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
 }
 
 .content{
@@ -56,8 +52,9 @@ body{
 }
 
 .resultsWrap{
+    box-sizing: border-box;
     margin: 5vh auto;
-    min-height: 86vh;
+    min-height: 100vh;
     background-color: #efd004;
     border-top: 2vh solid #e05618;
     border-bottom: 2vh solid #e05618;  
@@ -66,12 +63,13 @@ body{
 .contentResults{
     margin: 2vh auto;
     box-sizing: border-box;
-    min-height: 82vh;
+    min-height: 96vh;
     background-color: #f5dfc6;
     border-top: 3.5vh solid #745527;
     border-bottom: 3.5vh solid #745527;
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
 }
 
 .content div, .contentResults div{
