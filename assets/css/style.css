@@ -192,24 +192,11 @@ footer{
 
 #outerIntroVidContainer{
     margin: auto;
-    height: 90%;
     position: relative;
 }
 
 #outerAnswerVidContainer{
-    height: 82%;
-    width: 100%;
     position: relative;
-}
-
-/*button #479558 hover #1f4016*/
-
-#introVidContainer{
-    height: 100%;
-}
-
-#answerVidContainer{
-    height: 100%;
 }
 
 .videoCountdownContainer{
@@ -227,6 +214,18 @@ footer{
 }
 
 @media all and (min-aspect-ratio: 4/3){
+    #outerIntroVidContainer{
+        height: 90%;
+    }
+
+    #outerAnswerVidContainer{
+        height: 82%;
+    }
+
+    #introVidContainer, #answerVidContainer{
+        height: 100%;
+    }
+
     video{
         height: 100%;
         width: auto;
@@ -234,6 +233,14 @@ footer{
 }
 
 @media all and (max-aspect-ratio: 4/3){
+    #outerIntroVidContainer, #outerAnswerVidContainer{
+        width: 95%;
+    }
+
+    #introVidContainer, #answerVidContainer{
+        width: 100%;
+    }
+
     video{
         height: auto;
         width: 100%;
