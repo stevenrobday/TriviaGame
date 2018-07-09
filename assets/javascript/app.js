@@ -379,7 +379,7 @@ timer.prototype = {
 };
 
 //necessary for correct time to appear during fade in
-var questionTimerStart = 20;
+var questionTimerStart = 30;
 var videoTimerStart = 10;
 
 var questionTimer = new timer(questionTimerStart, $questionCountdown, gaveUp);
