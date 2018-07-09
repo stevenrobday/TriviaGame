@@ -1,29 +1,4 @@
-/*notes delete later 
-
-$(".videoContainer").show();
-
-$("#intro").trigger("play");
-
-if($("#intro").get(0).paused){
-    console.log("bloop");
-}
-
-$("video").on("pause", function () {
-    if(!$("#intro").get(0).ended)
-        console.log($(this));
-  });
-
-  $("video").on("play", function () {
-    console.log($(this).attr("id"));
-  });
-
-  $("video").on("ended", function () {
-    console.log("see ya");
-  });
-  //Give up?
-  //play the video before you're out of time!
-  */
-
+//game object containing questions, answers and results
 var gameObj = {
     questions: [
         {
@@ -79,7 +54,7 @@ var gameObj = {
             videoTag: "<video id='answerVideo' width='768' height='432'><source src='assets/videos/constitution.mp4' type='video/mp4'></video>"
         },
         {
-            question: "<p>As you take a broken plate out of the trash, you realize one of its pieces is missing.  How do you respond?</p>",
+            question: "<p>After you take a broken plate out of the trash, you realize one of its pieces is missing.  How do you respond?</p>",
             answers: [
                 "<p>\"Ah yes, just as I suspected!\"</p>",
                 "<p>\"What did I tell Skyler about separating the trash?\"</p>",
@@ -170,15 +145,18 @@ var gameObj = {
     ]
 };
 
-//may be able to make local
 var numQuestions = gameObj.questions.length;
 var numResults = gameObj.results.length;
+
+//used to calculate results
 var resultsDenominator = numQuestions / numResults;
 
+//number of questions player correctly answered
 var correctAnswers;
 
-$startContainer = $("#startContainer");
-$startBtn = $("#startBtn");
+//get elements to fade in or out, or append things to
+var $startContainer = $("#startContainer");
+var $startBtn = $("#startBtn");
 
 var $introContainer = $("#introContainer");
 var $introVidContainer = $("#introVidContainer");
@@ -186,11 +164,8 @@ var $introVideoTag = "<video id='introVideo' width='768' height='432'><source sr
 var $introVideo;
 var $video;
 
-$videoMessage = $(".videoMessage");
-$videoCountdown = $(".videoCountdown");
-
-var questionsArray;
-var questionsIndex;
+var $videoMessage = $(".videoMessage");
+var $videoCountdown = $(".videoCountdown");
 
 var $questionContainer = $("#questionContainer");
 var $question = $("#question");
@@ -206,146 +181,28 @@ var $playerGuess = $("#playerGuess");
 var $answerContainer = $("#answerContainer");
 var $correctAnswer = $("#correctAnswer");
 var $answerVidContainer = $("#answerVidContainer");
-var $answerVideo = $("#answerVideo");
 
 var $videoToPlay;
 var $containerToFade;
 
 var $resultsContainer = $("#resultsContainer");
 var $resultsContainerContent = $("#resultsContainer .contentResults");
-
-var resultsBtns = "<div><button id='restartBtn'><p>TRY AGAIN?</p></button></div><div><button id='seeAllBtn'><p>SEE ALL RESULTS</p></button></div>";
-
 var $restartBtn;
 
 var $allResultsContainerContent = $("#allResultsContainer .contentResults");
-
-$(gameObj.results).each(function (i) {
-    $allResultsContainerContent.append(this);
-    if (i < gameObj.results.length - 1) {
-        $allResultsContainerContent.append("<div class='spacer'></div>");
-    }
-});
-
 var $allResultsContainer = $("#allResultsContainer");
+var $backBtn = $("#backBtn");
 
-$backBtn = $("#backBtn");
+//questions will be copied from game object when the player clicks start
+var questionsArray;
 
-function assessAnswer(answer) {
-    if (answer === questionsArray[questionsIndex].correctIndex) {
-        correctAnswers++;
-        $playerGuess.html("CORRECT!");
-    }
-    else {
-        $playerGuess.html("INCORRECT!");
-    }
+//index for array.  randomly generated.
+var questionsIndex;
 
-    appendAnswerAndFade();
-}
+//appended to result
+var resultsBtns = "<div><button id='restartBtn'><p>TRY AGAIN?</p></button></div><div><button id='seeAllBtn'><p>SEE ALL RESULTS</p></button></div>";
 
-function gaveUp() {
-    $questionBtns.off("click");
-
-    $playerGuess.html("GIVE UP?");
-
-    appendAnswerAndFade();
-}
-
-function appendAnswerAndFade() {
-    $correctAnswer.html(questionsArray[questionsIndex].correctAnswer);
-
-    /*just putting the source tag inside the video tag
-    doesn't work.  it will keep on playing the first video.
-    so instead, we put the video and source tags inside the
-    video container element*/
-    $answerVidContainer.html(questionsArray[questionsIndex].videoTag);
-
-    //change value of var to newly created element so we can play it
-    $answerVideo = $("#answerVideo");
-    $videoToPlay = $answerVideo;
-    $containerToFade = $answerContainer;
-    //get any newly created video tag we may have just made
-    $video = $("video");
-    addVideoTimerListeners();
-    addVideoEndedListener();
-    questionsArray.splice(questionsIndex, 1);
-    $questionContainer.fadeOut(800, function () {
-        $answerContainer.fadeIn(800, function () {
-            videoPlay($answerVideo);
-        });
-    });
-}
-
-function addVideoEndedListener() {
-    $videoToPlay.on("ended", function () {
-        videoEnded();
-    });
-}
-
-function videoEnded() {
-    videoTimer.stop();
-    emptyVideoContainer();
-    $videoToPlay.get(0).controls = false;
-    $videoToPlay.off("ended");
-    if (questionsArray.length > 0) {
-        questionsIndex = Math.floor(Math.random() * questionsArray.length);
-        populateQuestion();
-
-        $questionBtns.off("click");
-
-        $questionBtns.on("click", function () {
-            $questionBtns.off("click");
-            questionTimer.stop();
-            assessAnswer(parseInt($(this).attr("data-index")));
-        });
-
-        $containerToFade.fadeOut(800, function () {
-            $questionContainer.fadeIn(800, function () {
-                questionTimer.start();
-            });
-        });
-    }
-    else {
-        var resultIndex = Math.floor(correctAnswers / resultsDenominator);
-        if (correctAnswers === numQuestions) {
-            resultIndex--;
-        }
-
-        $resultsContainerContent.html("<div><p>You got " + correctAnswers + " out of " + numQuestions + "!</div>");
-        $resultsContainerContent.append(gameObj.results[resultIndex]);
-        $resultsContainerContent.append(resultsBtns);
-
-        $restartBtn = $("#restartBtn");
-        $seeAllBtn = $("#seeAllBtn");
-
-        $restartBtn.on("click", function () {
-            $(this).off("click");
-            $seeAllBtn.off("click");
-            startGame();
-            $resultsContainer.fadeOut(800, function () {
-                $introContainer.fadeIn(800, function () {
-                    videoPlay($introVideo);
-                });
-            });
-        });
-
-        $seeAllBtn.on("click", function () {
-            $resultsContainer.fadeOut(800, function () {
-                $allResultsContainer.fadeIn(800);
-            });
-        });
-
-        $answerContainer.fadeOut(800, function () {
-            $resultsContainer.fadeIn(800);
-        });
-    }
-}
-
-function videoPlay($videoToPlay) {
-    $videoToPlay.trigger("play");
-    $videoToPlay.get(0).controls = true;
-}
-
+//timer class.  its start value, element to append current time, and call back are passed in
 var timer = function (startVal, $element, cb) {
     this.startVal = startVal;
     this.$element = $element;
@@ -353,25 +210,37 @@ var timer = function (startVal, $element, cb) {
 };
 
 timer.prototype = {
+    //reset timer back to start value
     reset: function () {
         this.time = this.startVal;
     },
+
+    //start the timer
     start: function () {
         var that = this;
 
         this.reset();
+
+        //place time inside its element
         this.$element.html("<p>" + this.time + "</p>");
+        
+        //count down every second
         this.id = setInterval(function () {
             that.count();
         }, 1000);
     },
+
+    //stop (clear the interval)
     stop: function () {
         clearInterval(this.id);
     },
+
+    //count down
     count: function () {
         this.time--;
         this.$element.html("<p>" + this.time + "</p>");
 
+        //once it reaches zero, clear interval and run callback
         if (this.time === 0) {
             this.stop();
             this.cb();
@@ -381,35 +250,222 @@ timer.prototype = {
 
 //necessary for correct time to appear during fade in
 var questionTimerStart = 30;
+
+//video timer will not be present during fade outs or fade ins, but declared a var anyway
 var videoTimerStart = 10;
 
+//timer for questions
 var questionTimer = new timer(questionTimerStart, $questionCountdown, gaveUp);
 
+/*
+video timer used when video is paused.
+I thought autoplay would be disabled on mobile, but since the user interacts first, it works.
+left it in anyway.  the assignment is on timers, after all!
+*/
 var videoTimer = new timer(videoTimerStart, $videoCountdown, videoEnded);
 
+//populate allResultsContainerContent with all results
+$(gameObj.results).each(function (i) {
+    $allResultsContainerContent.append(this);
+    if (i < gameObj.results.length - 1) {
+        $allResultsContainerContent.append("<div class='spacer'></div>");
+    }
+});
+
+//function to determind if correct or incorrect
+function assessAnswer(answer) {
+    //remove click events for buttons.
+    //necessary because clicks still registered during fade out.
+    $questionBtns.off("click");
+
+    //if correct, increment correctAnswers by one, and tell the player the good news
+    if (answer === questionsArray[questionsIndex].correctIndex) {
+        correctAnswers++;
+        $playerGuess.html("CORRECT!");
+    }
+    //otherwise, make them feel bad
+    else {
+        $playerGuess.html("INCORRECT!");
+    }
+
+    //function that does what it says
+    appendAnswerAndFade();
+}
+
+//this function will run if the question timer expires
+function gaveUp() {
+    $questionBtns.off("click");
+
+    $playerGuess.html("GIVE UP?");
+
+    appendAnswerAndFade();
+}
+
+function appendAnswerAndFade() {
+    //append correct answer from questionsArray
+    $correctAnswer.html(questionsArray[questionsIndex].correctAnswer);
+
+    /*just putting the source tag inside the video tag
+    doesn't work.  it will keep on playing the first video.
+    so instead, we put the video and source tags inside the
+    video container element*/
+    $answerVidContainer.html(questionsArray[questionsIndex].videoTag);
+
+    //change value of var to newly created element so we can play it
+    var $answerVideo = $("#answerVideo");
+
+    //set global variables for later functions
+    $videoToPlay = $answerVideo;
+    $containerToFade = $answerContainer;
+
+    //get newly created video tag we just made
+    $video = $("video");
+
+    //run functions to add in listeners for when video ends or video timer expires
+    addVideoTimerListeners();
+    addVideoEndedListener();
+
+    //entry can now be removed from questionsArray
+    questionsArray.splice(questionsIndex, 1);
+
+    //fade out questionContainer, fade in answerContainer and play video once it faded in
+    $questionContainer.fadeOut(800, function () {
+        $answerContainer.fadeIn(800, function () {
+            videoPlay($answerVideo);
+        });
+    });
+}
+
+//run videoEnded function after the video ends
+function addVideoEndedListener() {
+    $videoToPlay.on("ended", function () {
+        videoEnded();
+    });
+}
+
+function videoEnded() {
+    //stop the timer
+    videoTimer.stop();
+
+    //clear the video paused message and timer
+    emptyVideoContainer();
+
+    //disable the controls, so the player can't replay the video as it fades
+    $videoToPlay.get(0).controls = false;
+
+    //remove listener
+    $videoToPlay.off("ended");
+
+    //if there's any questions left, proceed to next question
+    if (questionsArray.length > 0) {
+        //get new question and populate
+        questionsIndex = Math.floor(Math.random() * questionsArray.length);
+        populateQuestion();
+
+        //add listeners back to question buttons
+        $questionBtns.on("click", function () {
+            //remove listen once clicked
+            $questionBtns.off("click");
+
+            //stop the timer
+            questionTimer.stop();
+
+            //assess their answer
+            assessAnswer(parseInt($(this).attr("data-index")));
+        });
+
+        //fade designated container (either intro video or answer)
+        $containerToFade.fadeOut(800, function () {
+            //fade in next question, and start timer once faded in
+            $questionContainer.fadeIn(800, function () {
+                questionTimer.start();
+            });
+        });
+    }
+    //condition if out of questions
+    else {
+        //get the player result
+        var resultIndex = Math.floor(correctAnswers / resultsDenominator);
+        
+        //if they got all the answers correct, lower result by one (there's five possible results)
+        if (correctAnswers === numQuestions) {
+            resultIndex--;
+        }
+
+        //display how many answers player got correct, append their result and the buttons
+        $resultsContainerContent.html("<div><p>You got " + correctAnswers + " out of " + numQuestions + "!</div>");
+        $resultsContainerContent.append(gameObj.results[resultIndex]);
+        $resultsContainerContent.append(resultsBtns);
+
+        //get these elements again since they were dynamically added
+        $restartBtn = $("#restartBtn");
+        $seeAllBtn = $("#seeAllBtn");
+
+        //when TRY AGAIN? button is clicked
+        $restartBtn.on("click", function () {
+            //remove listeners for restart and see all results buttons
+            $(this).off("click");
+            $seeAllBtn.off("click");
+            
+            //reset questions array
+            startGame();
+
+            //fade out results, play intro video again
+            $resultsContainer.fadeOut(800, function () {
+                $introContainer.fadeIn(800, function () {
+                    videoPlay($introVideo);
+                });
+            });
+        });
+
+        //fade to all results container
+        $seeAllBtn.on("click", function () {
+            $resultsContainer.fadeOut(800, function () {
+                $allResultsContainer.fadeIn(800);
+            });
+        });
+
+        //now fade to results
+        $answerContainer.fadeOut(800, function () {
+            $resultsContainer.fadeIn(800);
+        });
+    }
+}
+
+//function to play designated video
+function videoPlay($videoToPlay) {
+    $videoToPlay.trigger("play");
+    //enable controls so player can control it if they want
+    $videoToPlay.get(0).controls = true;
+}
+
 function addVideoTimerListeners() {
+    //remove these in case one is hanging 
     $video.off("pause");
     $video.off("play");
 
+    //if the video is paused, add the message and start the video timer
     $video.on("pause", function () {
-        console.log("hi");
         if (!$(this).get(0).ended) {
             $videoMessage.html("<p>Play the video before you're out of time!</p>");
             videoTimer.start();
         }
     });
 
+    //if user clicks play, stop the timer and remove message and time left from video
     $video.on("play", function () {
         videoTimer.stop();
         emptyVideoContainer();
     });
 }
 
+//function to remove video message and timer
 function emptyVideoContainer() {
     $videoMessage.empty();
     $videoCountdown.empty();
 }
 
+//populates question
 function populateQuestion() {
     $question.html(questionsArray[questionsIndex].question);
     $questionImg.html(questionsArray[questionsIndex].imgTag);
@@ -420,6 +476,33 @@ function populateQuestion() {
     $questionCountdown.html(questionTimerStart);
 }
 
+//function to start the game
+function startGame() {
+    //reset answers correct
+    correctAnswers = 0;
+
+    //copy questions and answers from game object into questions array
+    questionsArray = gameObj.questions.slice();
+
+    //add intro video into container
+    $introVidContainer.html($introVideoTag);
+
+    //get element we just added
+    $introVideo = $("#introVideo");
+
+    //now get all video tags
+    $video = $("video");
+
+    //for functions that will run later
+    $videoToPlay = $introVideo;
+    $containerToFade = $introContainer;
+
+    //add the listeners for intro video
+    addVideoTimerListeners();
+    addVideoEndedListener();
+}
+
+//start the game, play intro video on fade-in
 $startBtn.on("click", function () {
     startGame();
     $startContainer.fadeOut(800, function () {
@@ -429,23 +512,9 @@ $startBtn.on("click", function () {
     });
 });
 
-function startGame() {
-    correctAnswers = 0;
-    questionsArray = gameObj.questions.slice();
-    $introVidContainer.html($introVideoTag);
-    $introVideo = $("#introVideo");
-    $video = $("video");
-
-    $videoToPlay = $introVideo;
-    $containerToFade = $introContainer;
-
-    addVideoTimerListeners();
-    addVideoEndedListener();
-}
-
+//fade back to player results page from all results page
 $backBtn.on("click", function () {
     $allResultsContainer.fadeOut(800, function () {
         $resultsContainer.fadeIn(800);
     });
 });
-
