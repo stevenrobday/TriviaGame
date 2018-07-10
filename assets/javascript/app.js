@@ -202,7 +202,7 @@ var questionsIndex;
 //appended to result
 var resultsBtns = "<div><button id='restartBtn'><p>TRY AGAIN?</p></button></div><div><button id='seeAllBtn'><p>SEE ALL RESULTS</p></button></div>";
 
-//timer class.  its start value, element to append current time, and call back are passed in
+//timer class.  its start value, element to append current time, and callback are passed in
 var timer = function (startVal, $element, cb) {
     this.startVal = startVal;
     this.$element = $element;
@@ -272,7 +272,7 @@ $(gameObj.results).each(function (i) {
     }
 });
 
-//function to determind if correct or incorrect
+//function to determine if correct or incorrect
 function assessAnswer(answer) {
     //remove click events for buttons.
     //necessary because clicks still registered during fade out.
@@ -328,7 +328,7 @@ function appendAnswerAndFade() {
     //entry can now be removed from questionsArray
     questionsArray.splice(questionsIndex, 1);
 
-    //fade out questionContainer, fade in answerContainer and play video once it faded in
+    //fade out questionContainer, fade in answerContainer and play video once it fades in
     $questionContainer.fadeOut(800, function () {
         $answerContainer.fadeIn(800, function () {
             videoPlay($answerVideo);
@@ -418,7 +418,7 @@ function videoEnded() {
             });
         });
 
-        //fade to all results container
+        //fade to all results container when see all button pressed
         $seeAllBtn.on("click", function () {
             $resultsContainer.fadeOut(800, function () {
                 $allResultsContainer.fadeIn(800);
