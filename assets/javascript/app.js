@@ -31,12 +31,12 @@ var gameObj = {
             question: "<p>Look at me, Hector.</p>",
             answers: [
                 "<p>Look at him.</p>",
-                "<p>Don't look at him. Instead, grimmace and drool!</p>",
+                "<p>Don't look at him. Instead, grimace and drool!</p>",
                 "<p>Look at him, ding approximately 30 times and explode.</p>",
                 "<p>Ding approximately 30 times, look at him and explode.</p>"
             ],
             correctIndex: 1,
-            correctAnswer: "<p>You don't want to look at him. Just grimmace and drool instead.</p>",
+            correctAnswer: "<p>You don't want to look at him. Just grimace and drool instead.</p>",
             imgTag: "<img src='assets/images/lookAtMe.jpg' width='480'>",
             videoTag: "<video id='answerVideo' width='768' height='432'><source src='assets/videos/lookAtMe.mp4' type='video/mp4'></video>"
         },
@@ -69,7 +69,7 @@ var gameObj = {
         {
             question: "<p>Last chance to look at me, Hector...</p>",
             answers: [
-                "<p>Don't look at him. Instead, grimmace and drool!</p>",
+                "<p>Don't look at him. Instead, grimace and drool!</p>",
                 "<p>Look at him, ding approximately 30 times and explode.</p>",
                 "<p>Ding approximately 30 times, look at him and explode.</p>",
                 "<p>Explode, look at him and ding approximately 30 times.</p>"
